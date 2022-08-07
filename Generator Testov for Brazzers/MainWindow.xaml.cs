@@ -22,7 +22,7 @@ namespace Generator_Testov_for_Brazzers
     
     public partial class MainWindow : Window
     {
-        private static String Path = "C:\\Users\\HOME\\AppData\\Local\\Balance.xdav";
+        private static String Path = "C:\\Users\\" + Environment.UserName + "\\AppData\\Local\\Balance.xdav";
         private StreamWriter write_stream;
         private StreamReader read_stream;
 
@@ -54,6 +54,7 @@ namespace Generator_Testov_for_Brazzers
             Read_File();
         }
 
+        /////////////    Чтение и запись баланса    //////////////
         private void Read_File()
         {
             read_stream = new StreamReader(Path);
@@ -71,6 +72,7 @@ namespace Generator_Testov_for_Brazzers
             write_stream.Close();
         }
 
+        /////////////    Задаёт пример для решения    //////////////
         private void Get_Random_Exaple()
         {
             String first = "";
@@ -124,12 +126,7 @@ namespace Generator_Testov_for_Brazzers
             Answer_TextBox.Text = "Введите ответ";
         }
 
-        private void Return_Button_Click(object sender, RoutedEventArgs e)
-        {
-            ErrorMenu.Visibility = Visibility.Hidden;
-            ExampleMenu.Visibility = Visibility.Visible;
-            Answer_TextBox.Text = "Введите ответ";
-        }
+
 
         private void Next_Error_Button_Click(object sender, RoutedEventArgs e)
         {
@@ -170,7 +167,8 @@ namespace Generator_Testov_for_Brazzers
                     }
                 case 4:
                     {
-                        True_Answear = long.Parse(First_Number.Content.ToString()) / long.Parse(Second_Number.Content.ToString());
+                        if(long.Parse(Second_Number.Content.ToString()) != 0)
+                            True_Answear = long.Parse(First_Number.Content.ToString()) / long.Parse(Second_Number.Content.ToString());
                         break;
                     }
             }
@@ -184,6 +182,7 @@ namespace Generator_Testov_for_Brazzers
             }
             else
             {
+                Error_Message.Content = "Неправильно\nВаш ответ: " + Answer_TextBox.Text + "\nПравильный ответ: " + True_Answear;
                 ErrorMenu.Visibility = Visibility.Visible;
                 ExampleMenu.Visibility = Visibility.Hidden;
             }

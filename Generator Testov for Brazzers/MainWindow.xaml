@@ -144,7 +144,7 @@
         <Grid x:Name="BalanceMenu" Visibility="Visible" Margin="242,0,0,304">
             <Label Style="{DynamicResource LabelStyle1}" Content="Баланс: " x:Name="Balance" HorizontalAlignment="Left"  FontWeight="Bold"       Foreground="#FF404040" Margin="183,10,0,0" VerticalAlignment="Top" Height="50" Width="348" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24" Background="#8CFFEBC6"/>
         </Grid>
-        <Grid x:Name="MainMenu" Visibility="Visible" Background="Transparent">
+        <Grid x:Name="MainMenu" Visibility="Hidden" Background="Transparent">
             <Button Style="{DynamicResource ButtonStyle1}" x:Name="Exit_Button"    FontWeight="Bold"       Foreground="#FF404040" Content="Выход"         HorizontalAlignment="Left" Margin="10,10,0,0"   VerticalAlignment="Top" Height="50"  Width="150" Click="Exit_Button_Click" FontSize="24"  />
             <Button Style="{DynamicResource ButtonStyle1}" x:Name="Add_Button"     FontWeight="Bold"       Foreground="#FF404040" Content="Сложение"      HorizontalAlignment="Left" Margin="246,91,0,0"  VerticalAlignment="Top" Height="149" Width="149" Click="Add_Button_Click" FontSize="24"   />
             <Button Style="{DynamicResource ButtonStyle1}" x:Name="Sub_Button"     FontWeight="Bold"       Foreground="#FF404040" Content="Вычитание"     HorizontalAlignment="Left" Margin="400,91,0,0"  VerticalAlignment="Top" Height="149" Width="149" Click="Sub_Button_Click" FontSize="24"   />
@@ -171,10 +171,10 @@
             <Label Style="{DynamicResource LabelStyle1}" x:Name="Second_Number"       FontWeight="Bold"       Foreground="#FF404040" Content="Label"     HorizontalAlignment="Left" Margin="430,144,0,0"     VerticalAlignment="Top" Height="50" Width="250" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24"/>
             <TextBox Style="{DynamicResource TextBoxStyle1}" x:Name="Answer_TextBox"  FontWeight="Bold"       Foreground="#FF404040"                     HorizontalAlignment="Left" Margin="120,199,0,0"     TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="340" Height="50" TextAlignment="Center" PreviewMouseLeftButtonDown ="Answer_TextBox_PreviewMouseLeftButtonDown" FontSize="24"/>
         </Grid>
-        <Grid x:Name="ErrorMenu" Visibility="Hidden">
-            <Button Style="{DynamicResource ButtonStyle1}" x:Name="Next_Error_Button"  Content="Далее"     FontWeight="Bold"       Foreground="#FF404040" HorizontalAlignment="Left" Margin="405,222,0,0"     VerticalAlignment="Top" Height="50" Width="150" Click="Next_Error_Button_Click" FontSize="24"/>
-            <Button Style="{DynamicResource ButtonStyle1}" x:Name="Return_Button"      Content="Назад"     FontWeight="Bold"       Foreground="#FF404040" HorizontalAlignment="Left" Margin="245,222,0,0"     VerticalAlignment="Top" Height="50" Width="150" Click="Return_Button_Click" FontSize="24"/>
-            <Label Style="{DynamicResource LabelStyle1}" Content="Неправильно"                             FontWeight="Bold"       Foreground="#FF404040" HorizontalAlignment="Left" Margin="245,167,0,0"     VerticalAlignment="Top" Height="50" Width="310" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24"/>
+        <Grid x:Name="ErrorMenu" Visibility="Visible">
+            <Button Style="{DynamicResource ButtonStyle1}"  x:Name="Next_Error_Button"  Content="Далее"     FontWeight="Bold"       Foreground="#FF404040" HorizontalAlignment="Left" Margin="320,272,0,0"     VerticalAlignment="Top" Height="50" Width="150" Click="Next_Error_Button_Click" FontSize="24"/>
+            <!--<Button Style="{DynamicResource ButtonStyle1}"  x:Name="Return_Button"      Content="Назад"     FontWeight="Bold"       Foreground="#FF404040" HorizontalAlignment="Left" Margin="245,272,0,0"     VerticalAlignment="Top" Height="50" Width="150" Click="Return_Button_Click" FontSize="24"/>-->
+            <Label Style="{DynamicResource LabelStyle1}"    x:Name="Error_Message"      Content="Неправильно" FontWeight="Bold"       Foreground="#FF404040" HorizontalAlignment="Left" Margin="100,157,0,0"     VerticalAlignment="Top" Height="110" Width="600" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24"/>
         </Grid>
         <Grid x:Name="SucssesMenu" Visibility="Hidden">
             <Button Style="{DynamicResource ButtonStyle1}" x:Name="Next_Sucsses_Button" Content="Далее"    FontWeight="Bold"       Foreground="#FF404040" HorizontalAlignment="Center" Margin="0,222,0,0"   VerticalAlignment="Top" Height="50" Width="150" Click="Next_Sucsses_Button_Click" FontSize="24"/>
