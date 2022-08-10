@@ -129,22 +129,25 @@ namespace Generator_Testov_for_Brazzers
             Get_Random_Exaple();
             ExampleMenu.Visibility = Visibility.Visible;
             SucssesMenu.Visibility = Visibility.Hidden;
-            Answer_TextBox.Text = "Введите ответ";
+            Answer_TextBox.Text = "";
+            Answer_TextBox.Focus();
+            return;
         }
-
-
 
         private void Next_Error_Button_Click(object sender, RoutedEventArgs e)
         {
             Get_Random_Exaple();
             ExampleMenu.Visibility = Visibility.Visible;
             ErrorMenu.Visibility = Visibility.Hidden;
-            Answer_TextBox.Text = "Введите ответ";
+            Answer_TextBox.Text = "";
+            Answer_TextBox.Focus();
+            return;
         }
 
         private void Check_Button_Click(object sender, RoutedEventArgs e)
         {
-            if(Answer_TextBox.Text.ToString() == "Обнулить" ||
+            if (Answer_TextBox.Text.ToString() == "") return;
+                if (Answer_TextBox.Text.ToString() == "Обнулить" ||
                 Answer_TextBox.Text.ToString() == "обнулить" ||
                 Answer_TextBox.Text.ToString() == "Обналичить" ||
                 Answer_TextBox.Text.ToString() == "обналичить")
@@ -190,17 +193,19 @@ namespace Generator_Testov_for_Brazzers
             }
             if(True_Answear == long.Parse(Answer_TextBox.Text.ToString()))
             {
-                double x = ((double)Dif / (double)500) * Math.Pow(Mode, 3);
+                double x = Get_Sum();
                 Write_File(x);
                 Read_File();
                 SucssesMenu.Visibility = Visibility.Visible;
                 ExampleMenu.Visibility = Visibility.Hidden;
+                Next_Sucsses_Button.Focus();
             }
             else
             {
                 Error_Message.Content = "Неправильно\nВаш ответ: " + Answer_TextBox.Text + "\nПравильный ответ: " + True_Answear;
                 ErrorMenu.Visibility = Visibility.Visible;
                 ExampleMenu.Visibility = Visibility.Hidden;
+                Next_Error_Button.Focus();
             }
         }
 
@@ -266,11 +271,47 @@ namespace Generator_Testov_for_Brazzers
             DifficultMenu.Visibility = Visibility.Visible;
         }
 
+        private double Get_Sum()
+        {
+            switch (Mode)
+            {
+                case 1: return Math.Round(((double)Math.Pow(Dif, 4) / 20) * ((double)Math.Pow(Mode, 4) / 20), 4);
+                case 2: return Math.Round(((double)Math.Pow(Dif, 4) / 20) * ((double)Math.Pow(Mode, 4) / 20), 4);
+                case 3: return Math.Round(((double)Math.Pow(Dif, 4) / 20) * ((double)Math.Pow(Mode, 4) / 20), 4);
+                case 4: return Math.Round(((double)Math.Pow(Dif, 4) / 20) * ((double)Math.Pow(Mode, 4) / 20), 4);
+                default: return 0;
+            }
+        }
+        /*@see
+         @param Orger_Dif Уровень сложности
+         */
+        private double Get_Sum(int Other_Dif)
+        {
+            switch (Mode)
+            {
+                case 1: return Math.Round(((double)Math.Pow(Other_Dif, 4) / 20) * ((double)Math.Pow(Mode, 3) / 30), 4);
+                case 2: return Math.Round(((double)Math.Pow(Other_Dif, 4) / 20) * ((double)Math.Pow(Mode, 3) / 30), 4);
+                case 3: return Math.Round(((double)Math.Pow(Other_Dif, 4) / 20) * ((double)Math.Pow(Mode, 3) / 30), 4);
+                case 4: return Math.Round(((double)Math.Pow(Other_Dif, 4) / 20) * ((double)Math.Pow(Mode, 3) / 30), 4);
+                default: return 0;
+            }
+            
+        }
+
         private void Add_Button_Click(object sender, RoutedEventArgs e)
         {
             Clear_DifMenu();
             Operator.Content = "+";
             Mode = 1;
+
+            Dif_1_Button.Content = "Первый\n"     + Get_Sum(1) + " Руб.";
+            Dif_2_Button.Content = "Второй\n"     + Get_Sum(2) + " Руб.";
+            Dif_3_Button.Content = "Третий\n"     + Get_Sum(3) + " Руб.";
+            Dif_4_Button.Content = "Четвертый\n"  + Get_Sum(4) + " Руб.";
+            Dif_5_Button.Content = "Пятый\n"      + Get_Sum(5) + " Руб.";
+            Dif_6_Button.Content = "Шестой\n"     + Get_Sum(6) + " Руб.";
+            Dif_7_Button.Content = "Седьмой\n"    + Get_Sum(7) + " Руб.";
+            Dif_8_Button.Content = "Восьмой\n"    + Get_Sum(8) + " Руб.";
         }
 
         private void Sub_Button_Click(object sender, RoutedEventArgs e)
@@ -278,6 +319,15 @@ namespace Generator_Testov_for_Brazzers
             Clear_DifMenu();
             Operator.Content = "-";
             Mode = 2;
+
+            Dif_1_Button.Content = "Первый\n"     + Get_Sum(1) + " Руб.";
+            Dif_2_Button.Content = "Второй\n"     + Get_Sum(2) + " Руб.";
+            Dif_3_Button.Content = "Третий\n"     + Get_Sum(3) + " Руб.";
+            Dif_4_Button.Content = "Четвертый\n"  + Get_Sum(4) + " Руб.";
+            Dif_5_Button.Content = "Пятый\n"      + Get_Sum(5) + " Руб.";
+            Dif_6_Button.Content = "Шестой\n"     + Get_Sum(6) + " Руб.";
+            Dif_7_Button.Content = "Седьмой\n"    + Get_Sum(7) + " Руб.";
+            Dif_8_Button.Content = "Восьмой\n"    + Get_Sum(8) + " Руб.";
         }
 
         private void Mult_Button_Click(object sender, RoutedEventArgs e)
@@ -285,6 +335,15 @@ namespace Generator_Testov_for_Brazzers
             Clear_DifMenu();
             Operator.Content = "*";
             Mode = 3;
+
+            Dif_1_Button.Content = "Первый\n"     + Get_Sum(1) + " Руб.";
+            Dif_2_Button.Content = "Второй\n"     + Get_Sum(2) + " Руб.";
+            Dif_3_Button.Content = "Третий\n"     + Get_Sum(3) + " Руб.";
+            Dif_4_Button.Content = "Четвертый\n"  + Get_Sum(4) + " Руб.";
+            Dif_5_Button.Content = "Пятый\n"      + Get_Sum(5) + " Руб.";
+            Dif_6_Button.Content = "Шестой\n"     + Get_Sum(6) + " Руб.";
+            Dif_7_Button.Content = "Седьмой\n"    + Get_Sum(7) + " Руб.";
+            Dif_8_Button.Content = "Восьмой\n"    + Get_Sum(8) + " Руб.";
         }
 
         private void Div_Button_Click(object sender, RoutedEventArgs e)
@@ -292,6 +351,15 @@ namespace Generator_Testov_for_Brazzers
             Clear_DifMenu();
             Operator.Content = "/";
             Mode = 4;
+
+            Dif_1_Button.Content = "Первый\n"     + Get_Sum(1) + " Руб.";
+            Dif_2_Button.Content = "Второй\n"     + Get_Sum(2) + " Руб.";
+            Dif_3_Button.Content = "Третий\n"     + Get_Sum(3) + " Руб.";
+            Dif_4_Button.Content = "Четвертый\n"  + Get_Sum(4) + " Руб.";
+            Dif_5_Button.Content = "Пятый\n"      + Get_Sum(5) + " Руб.";
+            Dif_6_Button.Content = "Шестой\n"     + Get_Sum(6) + " Руб.";
+            Dif_7_Button.Content = "Седьмой\n"    + Get_Sum(7) + " Руб.";
+            Dif_8_Button.Content = "Восьмой\n"    + Get_Sum(8) + " Руб.";
         }
 
         private void Exit_Button_Click(object sender, RoutedEventArgs e)
@@ -314,6 +382,91 @@ namespace Generator_Testov_for_Brazzers
         private void Answer_TextBox_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             Answer_TextBox.Text = "";
+        }
+
+        private void Answer_TextBox_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key.ToString() == "Return")
+            {
+                Check_Button_Click(sender, e);
+            }
+        }
+
+        private void ErrorMenu_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            /*if (e.Key.ToString() == "Return")
+            {
+                Next_Error_Button_Click(sender, e); return;
+            }*/
+        }
+
+        private void SucssesMenu_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            /*if (e.Key.ToString() == "Return")
+            {
+                Next_Sucsses_Button_Click(sender, e); return;
+            }*/
+        }
+
+        private void MainGrid_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        
+        {
+            /*if (e.Key.ToString() == "Return")
+            {
+                if(ExampleMenu.Visibility == Visibility.Visible)
+                {
+                    Check_Button_Click(sender, e); return;
+                }
+                if (SucssesMenu.Visibility == Visibility.Visible)
+                {
+                    Next_Sucsses_Button_Click(sender, e); return;
+                }
+                if (ErrorMenu.Visibility == Visibility.Visible)
+                {
+                    Next_Error_Button_Click(sender, e); return;
+                }
+            }*/
+        }
+
+        private void Next_Sucsses_Button_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key.ToString() == "Return")
+            {
+                Next_Sucsses_Button_Click(sender, e); return;
+            }
+        }
+
+        private void Next_Error_Button_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key.ToString() == "Return")
+            {
+                Next_Error_Button_Click(sender, e); return;
+            }
+        }
+
+        private void Window_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            /*if (e.Key.ToString() == "Return")
+            {
+                if (ExampleMenu.Visibility == Visibility.Visible)
+                {
+                    Check_Button_Click(sender, e); return;
+                }
+                if (SucssesMenu.Visibility == Visibility.Visible)
+                {
+                    Next_Sucsses_Button_Click(sender, e); return;
+                }
+                if (ErrorMenu.Visibility == Visibility.Visible)
+                {
+                    Next_Error_Button_Click(sender, e); return;
+                }
+            }
+            if(ExampleMenu.Visibility == Visibility.Visible)
+            {
+                if (Answer_TextBox.Text == "Введите ответ")
+                    Answer_TextBox.Text = "";
+                Answer_TextBox.Focus();
+            }*/
         }
     }
 }

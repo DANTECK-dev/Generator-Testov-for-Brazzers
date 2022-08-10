@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Generator_Testov_for_Brazzers"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" ResizeMode="NoResize">
+        Title="MainWindow" Height="450" Width="800" ResizeMode="NoResize" KeyUp="Window_KeyUp">
     <Window.Resources>
 
         <!-- //////////////     BUTTON STYLES     ////////////// -->
@@ -139,12 +139,48 @@
             </Style.Triggers>
         </Style>
     </Window.Resources>
-    <Grid x:Name="MainGrid">
+    <Grid x:Name="MainGrid" KeyUp="MainGrid_KeyUp">
         <Image Source="/Fon_1.jpg" Margin="0,-1,0,-1" VerticalAlignment="Center" HorizontalAlignment="Center" Stretch="Fill" />
         <Grid x:Name="BalanceMenu" Visibility="Visible" Margin="242,0,0,304">
             <Label Style="{DynamicResource LabelStyle1}" Content="Баланс: " x:Name="Balance" HorizontalAlignment="Left"  FontWeight="Bold"       Foreground="#FF404040" Margin="183,10,0,0" VerticalAlignment="Top" Height="50" Width="348" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24" Background="#8CFFEBC6"/>
         </Grid>
         <Grid x:Name="MainMenu" Visibility="Hidden" Background="Transparent">
+            <Label Content="+" HorizontalAlignment="Left" Margin="206,-94,0,0" VerticalAlignment="Top" Width="228" Height="452" IsEnabled="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="260" FontWeight="Bold" Background="#00000000">
+                <Label.Foreground>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FD2CFF01" Offset="0"/>
+                        <GradientStop Color="Transparent" Offset="0.66"/>
+                        <GradientStop Offset="1"/>
+                    </LinearGradientBrush>
+                </Label.Foreground>
+            </Label>
+            <Label Content="-" HorizontalAlignment="Left" Margin="360,-94,0,0" VerticalAlignment="Top" Width="228" Height="452" IsEnabled="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="300" FontWeight="Bold" Background="#00000000">
+                <Label.Foreground>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FD01FFEE" Offset="0"/>
+                        <GradientStop Color="Transparent" Offset="0.66"/>
+                        <GradientStop Offset="1"/>
+                    </LinearGradientBrush>
+                </Label.Foreground>
+            </Label>
+            <Label Content="*" HorizontalAlignment="Left" Margin="206,132,0,0" VerticalAlignment="Top" Width="228" Height="452" IsEnabled="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="300" FontWeight="Bold" Background="#00000000">
+                <Label.Foreground>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FDFFA401" Offset="0"/>
+                        <GradientStop Color="Transparent" Offset="0.8"/>
+                        <GradientStop Offset="1"/>
+                    </LinearGradientBrush>
+                </Label.Foreground>
+            </Label>
+            <Label Content="/" HorizontalAlignment="Left" Margin="360,94,0,0" VerticalAlignment="Top" Width="228" Height="452" IsEnabled="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="250" FontWeight="Bold" Background="#00000000">
+                <Label.Foreground>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FDFF0101" Offset="0"/>
+                        <GradientStop Color="Transparent" Offset="0.8"/>
+                        <GradientStop Offset="1"/>
+                    </LinearGradientBrush>
+                </Label.Foreground>
+            </Label>
             <Button Style="{DynamicResource ButtonStyle1}" x:Name="Exit_Button"    FontWeight="Bold"       Foreground="#FF404040" Content="Выход"         HorizontalAlignment="Left" Margin="10,10,0,0"   VerticalAlignment="Top" Height="50"  Width="150" Click="Exit_Button_Click" FontSize="24"  />
             <Button Style="{DynamicResource ButtonStyle1}" x:Name="Add_Button"     FontWeight="Bold"       Foreground="#FF404040" Content="Сложение"      HorizontalAlignment="Left" Margin="246,91,0,0"  VerticalAlignment="Top" Height="149" Width="149" Click="Add_Button_Click" FontSize="24"   />
             <Button Style="{DynamicResource ButtonStyle1}" x:Name="Sub_Button"     FontWeight="Bold"       Foreground="#FF404040" Content="Вычитание"     HorizontalAlignment="Left" Margin="400,91,0,0"  VerticalAlignment="Top" Height="149" Width="149" Click="Sub_Button_Click" FontSize="24"   />
@@ -152,32 +188,107 @@
             <Button Style="{DynamicResource ButtonStyle1}" x:Name="Mult_Button"    FontWeight="Bold"       Foreground="#FF404040" Content="Умножение"     HorizontalAlignment="Left" Margin="246,245,0,0" VerticalAlignment="Top" Height="149" Width="149" Click="Mult_Button_Click" FontSize="24"  />
         </Grid>
         <Grid x:Name="DifficultMenu" Visibility="Hidden">
-            <Button Style="{DynamicResource ButtonStyle1}" x:Name="Back_Dif_Button"    FontWeight="Bold"       Foreground="#FF404040" Content="Назад"         HorizontalAlignment="Left" Margin="10,10,0,0"   VerticalAlignment="Top" Height="50"  Width="150" Click="Back_Dif_Button_Click" FontSize="24" />
-            <Button Style="{DynamicResource ButtonStyle1}" x:Name="Dif_1_Button"       FontWeight="Bold"       Foreground="#FF404040" Content="Первый"        HorizontalAlignment="Left" Margin="85,92,0,0"   VerticalAlignment="Top" Height="149" Width="149" Click="Dif_1_Button_Click" FontSize="24"/>
-            <Button Style="{DynamicResource ButtonStyle1}" x:Name="Dif_2_Button"       FontWeight="Bold"       Foreground="#FF404040" Content="Второй"        HorizontalAlignment="Left" Margin="239,92,0,0"  VerticalAlignment="Top" Height="149" Width="149" Click="Dif_2_Button_Click" FontSize="24"/>
-            <Button Style="{DynamicResource ButtonStyle1}" x:Name="Dif_3_Button"       FontWeight="Bold"       Foreground="#FF404040" Content="Третий"        HorizontalAlignment="Left" Margin="392,92,0,0"  VerticalAlignment="Top" Height="149" Width="149" Click="Dif_3_Button_Click" FontSize="24"/>
-            <Button Style="{DynamicResource ButtonStyle1}" x:Name="Dif_4_Button"       FontWeight="Bold"       Foreground="#FF404040" Content="Четвертый"     HorizontalAlignment="Left" Margin="546,92,0,0"  VerticalAlignment="Top" Height="149" Width="149" Click="Dif_4_Button_Click" FontSize="24"/>
-            <Button Style="{DynamicResource ButtonStyle1}" x:Name="Dif_5_Button"       FontWeight="Bold"       Foreground="#FF404040" Content="Пятый"         HorizontalAlignment="Left" Margin="85,246,0,0"  VerticalAlignment="Top" Height="149" Width="149" Click="Dif_5_Button_Click" FontSize="24"/>
-            <Button Style="{DynamicResource ButtonStyle1}" x:Name="Dif_6_Button"       FontWeight="Bold"       Foreground="#FF404040" Content="Шестой"        HorizontalAlignment="Left" Margin="239,246,0,0" VerticalAlignment="Top" Height="149" Width="149" Click="Dif_6_Button_Click" FontSize="24"/>
-            <Button Style="{DynamicResource ButtonStyle1}" x:Name="Dif_7_Button"       FontWeight="Bold"       Foreground="#FF404040" Content="Седьмой"       HorizontalAlignment="Left" Margin="392,246,0,0" VerticalAlignment="Top" Height="149" Width="149" Click="Dif_7_Button_Click" FontSize="24"/>
-            <Button Style="{DynamicResource ButtonStyle1}" x:Name="Dif_8_Button"       FontWeight="Bold"       Foreground="#FF404040" Content="Восьмой"       HorizontalAlignment="Left" Margin="546,246,0,0" VerticalAlignment="Top" Height="149" Width="149" Click="Dif_8_Button_Click" FontSize="24"/>
+            <Label Content="1" HorizontalAlignment="Left" Margin="85,-14,0,0" VerticalAlignment="Top" Width="149" Height="368" IsEnabled="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="250" FontWeight="Bold" Background="#00000000">
+                <Label.Foreground>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF00FFBF"/>
+                        <GradientStop Offset="1"/>
+                        <GradientStop Color="White" Offset="1"/>
+                    </LinearGradientBrush>
+                </Label.Foreground>
+            </Label>
+            <Label Content="2" HorizontalAlignment="Left" Margin="239,-14,0,0" VerticalAlignment="Top" Width="149" Height="368" IsEnabled="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="250" FontWeight="Bold" Background="#00000000">
+                <Label.Foreground>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF08FF00"/>
+                        <GradientStop Offset="1"/>
+                        <GradientStop Color="White" Offset="1"/>
+                    </LinearGradientBrush>
+                </Label.Foreground>
+            </Label>
+            <Label Content="3" HorizontalAlignment="Left" Margin="393,-14,0,0" VerticalAlignment="Top" Width="149" Height="368" IsEnabled="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="250" FontWeight="Bold" Background="#00000000">
+                <Label.Foreground>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFFF9800"/>
+                        <GradientStop Offset="1"/>
+                        <GradientStop Color="White" Offset="1"/>
+                    </LinearGradientBrush>
+                </Label.Foreground>
+            </Label>
+            <Label Content="4" HorizontalAlignment="Left" Margin="547,-17,0,0" VerticalAlignment="Top" Width="149" Height="367" IsEnabled="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="250" FontWeight="Bold" Background="#00000000">
+                <Label.Foreground>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFFF9800"/>
+                        <GradientStop Offset="1"/>
+                        <GradientStop Color="White" Offset="1"/>
+                        <GradientStop Color="#FDFF0101" Offset="0"/>
+                    </LinearGradientBrush>
+                </Label.Foreground>
+            </Label>
+            <Label Content="5" HorizontalAlignment="Left" Margin="85,137,0,0" VerticalAlignment="Top" Width="149" Height="367" IsEnabled="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="250" FontWeight="Bold" Background="#00000000">
+                <Label.Foreground>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FD9401FF" Offset="0"/>
+                        <GradientStop Color="Transparent" Offset="0.887"/>
+                        <GradientStop Offset="1"/>
+                    </LinearGradientBrush>
+                </Label.Foreground>
+            </Label>
+            <Label Content="6" HorizontalAlignment="Left" Margin="234,147,0,0" VerticalAlignment="Top" Width="149" Height="357" IsEnabled="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="250" FontWeight="Bold" Background="#00000000">
+                <Label.Foreground>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FDB701FF" Offset="0"/>
+                        <GradientStop Color="Transparent" Offset="0.887"/>
+                        <GradientStop Offset="1"/>
+                    </LinearGradientBrush>
+                </Label.Foreground>
+            </Label>
+            <Label Content="7" HorizontalAlignment="Left" Margin="393,137,0,0" VerticalAlignment="Top" Width="149" Height="367" IsEnabled="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="250" FontWeight="Bold" Background="#00000000">
+                <Label.Foreground>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FD014BFF" Offset="0"/>
+                        <GradientStop Color="Transparent" Offset="0.887"/>
+                        <GradientStop Offset="1"/>
+                    </LinearGradientBrush>
+                </Label.Foreground>
+            </Label>
+            <Label Content="8" HorizontalAlignment="Left" Margin="547,147,0,0" VerticalAlignment="Top" Width="149" Height="357" IsEnabled="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="250" FontWeight="Bold" Background="#00000000" FontStyle="Normal">
+                <Label.Foreground>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FDFF016A" Offset="0"/>
+                        <GradientStop Color="Transparent" Offset="0.887"/>
+                        <GradientStop Offset="1"/>
+                    </LinearGradientBrush>
+                </Label.Foreground>
+            </Label>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="Back_Dif_Button"    FontWeight="Bold"       Foreground="#FF404040" Content="Назад"         HorizontalAlignment="Left" Margin="10,10,0,0"   HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="50"  Width="150" Click="Back_Dif_Button_Click" FontSize="24" />
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="Dif_1_Button"       FontWeight="Bold"       Foreground="#FF404040" Content="Первый"        HorizontalAlignment="Left" Margin="85,92,0,0"   HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="149" Width="149" Click="Dif_1_Button_Click" FontSize="24"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="Dif_2_Button"       FontWeight="Bold"       Foreground="#FF404040" Content="Второй"        HorizontalAlignment="Left" Margin="239,92,0,0"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="149" Width="149" Click="Dif_2_Button_Click" FontSize="24"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="Dif_3_Button"       FontWeight="Bold"       Foreground="#FF404040" Content="Третий"        HorizontalAlignment="Left" Margin="392,92,0,0"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="149" Width="149" Click="Dif_3_Button_Click" FontSize="24"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="Dif_4_Button"       FontWeight="Bold"       Foreground="#FF404040" Content="Четвертый"     HorizontalAlignment="Left" Margin="546,92,0,0"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="149" Width="149" Click="Dif_4_Button_Click" FontSize="24"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="Dif_5_Button"       FontWeight="Bold"       Foreground="#FF404040" Content="Пятый"         HorizontalAlignment="Left" Margin="85,246,0,0"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="149" Width="149" Click="Dif_5_Button_Click" FontSize="24"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="Dif_6_Button"       FontWeight="Bold"       Foreground="#FF404040" Content="Шестой"        HorizontalAlignment="Left" Margin="239,246,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="149" Width="149" Click="Dif_6_Button_Click" FontSize="24"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="Dif_7_Button"       FontWeight="Bold"       Foreground="#FF404040" Content="Седьмой"       HorizontalAlignment="Left" Margin="392,246,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="149" Width="149" Click="Dif_7_Button_Click" FontSize="24"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="Dif_8_Button"       FontWeight="Bold"       Foreground="#FF404040" Content="Восьмой"       HorizontalAlignment="Left" Margin="546,246,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="149" Width="149" Click="Dif_8_Button_Click" FontSize="24"/>
             <Label Style="{DynamicResource LabelStyle1}" Content="Уровень сложности"   FontWeight="Bold"       HorizontalAlignment="Left" Margin="174,10,0,0" VerticalAlignment="Top" FontSize="24" Foreground="#FF1F1F1F" Height="50"/>
+
+
         </Grid>
-        <Grid x:Name="ExampleMenu" Visibility="Hidden">
+        <Grid x:Name="ExampleMenu" Visibility="Visible">
             <Button Style="{DynamicResource ButtonStyle1}" x:Name="Back_Exam_Button"  FontWeight="Bold"       Foreground="#FF404040" Content="Назад"     HorizontalAlignment="Left" Margin="10,10,0,0"       VerticalAlignment="Top" Height="50"  Width="150" Click="Back_Exam_Button_Click" FontSize="24"  />
             <Button Style="{DynamicResource ButtonStyle1}" x:Name="Check_Button"      FontWeight="Bold"       Foreground="#FF404040" Content="Готово"    HorizontalAlignment="Left" Margin="465,199,0,0"     VerticalAlignment="Top" Height="50" Width="215" Click="Check_Button_Click" FontSize="24"/>
             <Label Style="{DynamicResource LabelStyle1}" x:Name="First_Number"        FontWeight="Bold"       Foreground="#FF404040" Content="Label"     HorizontalAlignment="Left" Margin="120,144,0,0"     VerticalAlignment="Top" Height="50" Width="250" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24"/>
             <Label Style="{DynamicResource LabelStyle1}" x:Name="Operator"            FontWeight="Bold"       Foreground="#FF404040" Content="Label"     HorizontalAlignment="Left" Margin="375,144,0,0"     VerticalAlignment="Top" Height="50" Width="50" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24"/>
             <Label Style="{DynamicResource LabelStyle1}" x:Name="Second_Number"       FontWeight="Bold"       Foreground="#FF404040" Content="Label"     HorizontalAlignment="Left" Margin="430,144,0,0"     VerticalAlignment="Top" Height="50" Width="250" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24"/>
-            <TextBox Style="{DynamicResource TextBoxStyle1}" x:Name="Answer_TextBox"  FontWeight="Bold"       Foreground="#FF404040"                     HorizontalAlignment="Left" Margin="120,199,0,0"     TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="340" Height="50" TextAlignment="Center" PreviewMouseLeftButtonDown ="Answer_TextBox_PreviewMouseLeftButtonDown" FontSize="24"/>
+            <TextBox Style="{DynamicResource TextBoxStyle1}" x:Name="Answer_TextBox"  FontWeight="Bold"       Foreground="#FF404040"                     HorizontalAlignment="Left" Margin="120,199,0,0"     VerticalAlignment="Top" Width="340" Height="50" TextWrapping="Wrap" Text="TextBox"  TextAlignment="Center" PreviewMouseLeftButtonDown ="Answer_TextBox_PreviewMouseLeftButtonDown" FontSize="24" KeyUp="Answer_TextBox_KeyUp"/>
         </Grid>
-        <Grid x:Name="ErrorMenu" Visibility="Visible">
-            <Button Style="{DynamicResource ButtonStyle1}"  x:Name="Next_Error_Button"  Content="Далее"     FontWeight="Bold"       Foreground="#FF404040" HorizontalAlignment="Left" Margin="320,272,0,0"     VerticalAlignment="Top" Height="50" Width="150" Click="Next_Error_Button_Click" FontSize="24"/>
+        <Grid x:Name="ErrorMenu" Visibility="Hidden" KeyUp="ErrorMenu_KeyUp">
+            <Button Style="{DynamicResource ButtonStyle1}"  x:Name="Next_Error_Button"  Content="Далее"     FontWeight="Bold"       Foreground="#FF404040" HorizontalAlignment="Left" Margin="320,272,0,0"     VerticalAlignment="Top" Height="50" Width="150" Click="Next_Error_Button_Click" FontSize="24" KeyUp="Next_Error_Button_KeyUp"/>
             <!--<Button Style="{DynamicResource ButtonStyle1}"  x:Name="Return_Button"      Content="Назад"     FontWeight="Bold"       Foreground="#FF404040" HorizontalAlignment="Left" Margin="245,272,0,0"     VerticalAlignment="Top" Height="50" Width="150" Click="Return_Button_Click" FontSize="24"/>-->
             <Label Style="{DynamicResource LabelStyle1}"    x:Name="Error_Message"      Content="Неправильно" FontWeight="Bold"       Foreground="#FF404040" HorizontalAlignment="Left" Margin="100,157,0,0"     VerticalAlignment="Top" Height="110" Width="600" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24"/>
         </Grid>
-        <Grid x:Name="SucssesMenu" Visibility="Hidden">
-            <Button Style="{DynamicResource ButtonStyle1}" x:Name="Next_Sucsses_Button" Content="Далее"    FontWeight="Bold"       Foreground="#FF404040" HorizontalAlignment="Center" Margin="0,222,0,0"   VerticalAlignment="Top" Height="50" Width="150" Click="Next_Sucsses_Button_Click" FontSize="24"/>
+        <Grid x:Name="SucssesMenu" Visibility="Hidden" KeyUp="SucssesMenu_KeyUp">
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="Next_Sucsses_Button" Content="Далее"    FontWeight="Bold"       Foreground="#FF404040" HorizontalAlignment="Center" Margin="0,222,0,0"   VerticalAlignment="Top" Height="50" Width="150" Click="Next_Sucsses_Button_Click" FontSize="24" KeyUp="Next_Sucsses_Button_KeyUp"/>
             <Label Style="{DynamicResource LabelStyle1}" Content="Правильно" HorizontalAlignment="Center"  FontWeight="Bold"       Foreground="#FF404040" Margin="0,167,0,0" VerticalAlignment="Top" Height="50" Width="150" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24"/>
         </Grid>
     </Grid>
