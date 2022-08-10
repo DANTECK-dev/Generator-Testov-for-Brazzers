@@ -80,6 +80,12 @@ namespace Generator_Testov_for_Brazzers
             Random rnd = new Random();
             for (int i = 0; i < Dif; i++)
             {
+                if(i == 0 || i == 7)
+                {
+                    first += rnd.Next(1, 10).ToString();
+                    second += rnd.Next(1, 10).ToString();
+                    continue;
+                }
                 first += rnd.Next(10).ToString();
                 second += rnd.Next(10).ToString();
             }
@@ -138,6 +144,16 @@ namespace Generator_Testov_for_Brazzers
 
         private void Check_Button_Click(object sender, RoutedEventArgs e)
         {
+            if(Answer_TextBox.Text.ToString() == "Обнулить" ||
+                Answer_TextBox.Text.ToString() == "обнулить" ||
+                Answer_TextBox.Text.ToString() == "Обналичить" ||
+                Answer_TextBox.Text.ToString() == "обналичить")
+            {
+                Balance.Content = "Баланс: 0,0";
+                Write_File(0);
+                Answer_TextBox.Text = "Счёт обнулён";
+                return;
+            }
             if(!long.TryParse(Answer_TextBox.Text.ToString(), out _))
             {
                 MessageBox.Show(
