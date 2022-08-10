@@ -387,86 +387,19 @@ namespace Generator_Testov_for_Brazzers
         private void Answer_TextBox_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         {
             if (e.Key.ToString() == "Return")
-            {
                 Check_Button_Click(sender, e);
-            }
-        }
-
-        private void ErrorMenu_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
-        {
-            /*if (e.Key.ToString() == "Return")
-            {
-                Next_Error_Button_Click(sender, e); return;
-            }*/
-        }
-
-        private void SucssesMenu_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
-        {
-            /*if (e.Key.ToString() == "Return")
-            {
-                Next_Sucsses_Button_Click(sender, e); return;
-            }*/
-        }
-
-        private void MainGrid_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
-        
-        {
-            /*if (e.Key.ToString() == "Return")
-            {
-                if(ExampleMenu.Visibility == Visibility.Visible)
-                {
-                    Check_Button_Click(sender, e); return;
-                }
-                if (SucssesMenu.Visibility == Visibility.Visible)
-                {
-                    Next_Sucsses_Button_Click(sender, e); return;
-                }
-                if (ErrorMenu.Visibility == Visibility.Visible)
-                {
-                    Next_Error_Button_Click(sender, e); return;
-                }
-            }*/
         }
 
         private void Next_Sucsses_Button_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         {
             if (e.Key.ToString() == "Return")
-            {
-                Next_Sucsses_Button_Click(sender, e); return;
-            }
+                Next_Sucsses_Button_Click(sender, e);
         }
 
         private void Next_Error_Button_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         {
             if (e.Key.ToString() == "Return")
-            {
-                Next_Error_Button_Click(sender, e); return;
-            }
-        }
-
-        private void Window_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
-        {
-            /*if (e.Key.ToString() == "Return")
-            {
-                if (ExampleMenu.Visibility == Visibility.Visible)
-                {
-                    Check_Button_Click(sender, e); return;
-                }
-                if (SucssesMenu.Visibility == Visibility.Visible)
-                {
-                    Next_Sucsses_Button_Click(sender, e); return;
-                }
-                if (ErrorMenu.Visibility == Visibility.Visible)
-                {
-                    Next_Error_Button_Click(sender, e); return;
-                }
-            }
-            if(ExampleMenu.Visibility == Visibility.Visible)
-            {
-                if (Answer_TextBox.Text == "Введите ответ")
-                    Answer_TextBox.Text = "";
-                Answer_TextBox.Focus();
-            }*/
+                Next_Error_Button_Click(sender, e);
         }
     }
 }

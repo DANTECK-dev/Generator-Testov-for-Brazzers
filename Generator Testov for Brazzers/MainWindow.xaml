@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Generator_Testov_for_Brazzers"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" ResizeMode="NoResize" KeyUp="Window_KeyUp">
+        Title="MainWindow" Height="450" Width="800" ResizeMode="NoResize">
     <Window.Resources>
 
         <!-- //////////////     BUTTON STYLES     ////////////// -->
@@ -139,7 +139,7 @@
             </Style.Triggers>
         </Style>
     </Window.Resources>
-    <Grid x:Name="MainGrid" KeyUp="MainGrid_KeyUp">
+    <Grid x:Name="MainGrid">
         <Image Source="/Fon_1.jpg" Margin="0,-1,0,-1" VerticalAlignment="Center" HorizontalAlignment="Center" Stretch="Fill" />
         <Grid x:Name="BalanceMenu" Visibility="Visible" Margin="242,0,0,304">
             <Label Style="{DynamicResource LabelStyle1}" Content="Баланс: " x:Name="Balance" HorizontalAlignment="Left"  FontWeight="Bold"       Foreground="#FF404040" Margin="183,10,0,0" VerticalAlignment="Top" Height="50" Width="348" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24" Background="#8CFFEBC6"/>
@@ -282,12 +282,12 @@
             <Label Style="{DynamicResource LabelStyle1}" x:Name="Second_Number"       FontWeight="Bold"       Foreground="#FF404040" Content="Label"     HorizontalAlignment="Left" Margin="430,144,0,0"     VerticalAlignment="Top" Height="50" Width="250" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24"/>
             <TextBox Style="{DynamicResource TextBoxStyle1}" x:Name="Answer_TextBox"  FontWeight="Bold"       Foreground="#FF404040"                     HorizontalAlignment="Left" Margin="120,199,0,0"     VerticalAlignment="Top" Width="340" Height="50" TextWrapping="Wrap" Text="TextBox"  TextAlignment="Center" PreviewMouseLeftButtonDown ="Answer_TextBox_PreviewMouseLeftButtonDown" FontSize="24" KeyUp="Answer_TextBox_KeyUp"/>
         </Grid>
-        <Grid x:Name="ErrorMenu" Visibility="Hidden" KeyUp="ErrorMenu_KeyUp">
+        <Grid x:Name="ErrorMenu" Visibility="Hidden">
             <Button Style="{DynamicResource ButtonStyle1}"  x:Name="Next_Error_Button"  Content="Далее"     FontWeight="Bold"       Foreground="#FF404040" HorizontalAlignment="Left" Margin="320,272,0,0"     VerticalAlignment="Top" Height="50" Width="150" Click="Next_Error_Button_Click" FontSize="24" KeyUp="Next_Error_Button_KeyUp"/>
             <!--<Button Style="{DynamicResource ButtonStyle1}"  x:Name="Return_Button"      Content="Назад"     FontWeight="Bold"       Foreground="#FF404040" HorizontalAlignment="Left" Margin="245,272,0,0"     VerticalAlignment="Top" Height="50" Width="150" Click="Return_Button_Click" FontSize="24"/>-->
             <Label Style="{DynamicResource LabelStyle1}"    x:Name="Error_Message"      Content="Неправильно" FontWeight="Bold"       Foreground="#FF404040" HorizontalAlignment="Left" Margin="100,157,0,0"     VerticalAlignment="Top" Height="110" Width="600" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24"/>
         </Grid>
-        <Grid x:Name="SucssesMenu" Visibility="Hidden" KeyUp="SucssesMenu_KeyUp">
+        <Grid x:Name="SucssesMenu" Visibility="Hidden">
             <Button Style="{DynamicResource ButtonStyle1}" x:Name="Next_Sucsses_Button" Content="Далее"    FontWeight="Bold"       Foreground="#FF404040" HorizontalAlignment="Center" Margin="0,222,0,0"   VerticalAlignment="Top" Height="50" Width="150" Click="Next_Sucsses_Button_Click" FontSize="24" KeyUp="Next_Sucsses_Button_KeyUp"/>
             <Label Style="{DynamicResource LabelStyle1}" Content="Правильно" HorizontalAlignment="Center"  FontWeight="Bold"       Foreground="#FF404040" Margin="0,167,0,0" VerticalAlignment="Top" Height="50" Width="150" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24"/>
         </Grid>
