@@ -45,6 +45,9 @@ namespace Generator_Testov_for_Brazzers
         public MainWindow()
         {
             InitializeComponent();
+            FileStream fstream = new FileStream(Path, FileMode.OpenOrCreate);
+            fstream.Close();
+            //                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                (new StreamReader(Path).ReadLine() == "") new StreamWriter(Path).Write("0");
             MainMenu.Visibility = Visibility.Visible;
             DifficultMenu.Visibility = Visibility.Hidden;
             ExampleMenu.Visibility = Visibility.Hidden;
@@ -67,6 +70,7 @@ namespace Generator_Testov_for_Brazzers
             write_stream = new StreamWriter(Path);
             String temp = Balance.Content.ToString();
             temp = temp.Remove(0, 8);
+            if (temp == "") temp = "0";
             double balance = double.Parse(temp) + pay;
             write_stream.WriteLine(balance);
             write_stream.Close();
@@ -275,10 +279,10 @@ namespace Generator_Testov_for_Brazzers
         {
             switch (Mode)
             {
-                case 1: return Math.Round(((double)Math.Pow(Dif, 4) / 20) * ((double)Math.Pow(Mode, 4) / 20), 4);
-                case 2: return Math.Round(((double)Math.Pow(Dif, 4) / 20) * ((double)Math.Pow(Mode, 4) / 20), 4);
-                case 3: return Math.Round(((double)Math.Pow(Dif, 4) / 20) * ((double)Math.Pow(Mode, 4) / 20), 4);
-                case 4: return Math.Round(((double)Math.Pow(Dif, 4) / 20) * ((double)Math.Pow(Mode, 4) / 20), 4);
+                case 1: return Math.Round(((double)Math.Pow(Dif, 2) / 6) * ((double)Math.Pow(Mode, 2) / 6), 4);
+                case 2: return Math.Round(((double)Math.Pow(Dif, 2) / 6) * ((double)Math.Pow(Mode, 2) / 6), 4);
+                case 3: return Math.Round(((double)Math.Pow(Dif, 2) / 6) * ((double)Math.Pow(Mode, 2) / 6), 4);
+                case 4: return Math.Round(((double)Math.Pow(Dif, 2) / 6) * ((double)Math.Pow(Mode, 2) / 6), 4);
                 default: return 0;
             }
         }
@@ -289,10 +293,10 @@ namespace Generator_Testov_for_Brazzers
         {
             switch (Mode)
             {
-                case 1: return Math.Round(((double)Math.Pow(Other_Dif, 4) / 20) * ((double)Math.Pow(Mode, 3) / 30), 4);
-                case 2: return Math.Round(((double)Math.Pow(Other_Dif, 4) / 20) * ((double)Math.Pow(Mode, 3) / 30), 4);
-                case 3: return Math.Round(((double)Math.Pow(Other_Dif, 4) / 20) * ((double)Math.Pow(Mode, 3) / 30), 4);
-                case 4: return Math.Round(((double)Math.Pow(Other_Dif, 4) / 20) * ((double)Math.Pow(Mode, 3) / 30), 4);
+                case 1: return Math.Round(((double)Math.Pow(Other_Dif, 2) / 6) * ((double)Math.Pow(Mode, 2) / 6), 4);
+                case 2: return Math.Round(((double)Math.Pow(Other_Dif, 2) / 6) * ((double)Math.Pow(Mode, 2) / 6), 4);
+                case 3: return Math.Round(((double)Math.Pow(Other_Dif, 2) / 6) * ((double)Math.Pow(Mode, 2) / 6), 4);
+                case 4: return Math.Round(((double)Math.Pow(Other_Dif, 2) / 6) * ((double)Math.Pow(Mode, 2) / 6), 4);
                 default: return 0;
             }
             

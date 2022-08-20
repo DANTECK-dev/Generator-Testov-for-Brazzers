@@ -144,12 +144,12 @@
         <Grid x:Name="BalanceMenu" Visibility="Visible" Margin="242,0,0,304">
             <Label Style="{DynamicResource LabelStyle1}" Content="Баланс: " x:Name="Balance" HorizontalAlignment="Left"  FontWeight="Bold"       Foreground="#FF404040" Margin="183,10,0,0" VerticalAlignment="Top" Height="50" Width="348" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24" Background="#8CFFEBC6"/>
         </Grid>
-        <Grid x:Name="MainMenu" Visibility="Hidden" Background="Transparent">
+        <Grid x:Name="MainMenu" Visibility="Visible" Background="Transparent">
             <Label Content="+" HorizontalAlignment="Left" Margin="206,-94,0,0" VerticalAlignment="Top" Width="228" Height="452" IsEnabled="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="260" FontWeight="Bold" Background="#00000000">
                 <Label.Foreground>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                         <GradientStop Color="#FD2CFF01" Offset="0"/>
-                        <GradientStop Color="Transparent" Offset="0.66"/>
+                        <GradientStop Color="Transparent" Offset="0.7"/>
                         <GradientStop Offset="1"/>
                     </LinearGradientBrush>
                 </Label.Foreground>
@@ -158,7 +158,7 @@
                 <Label.Foreground>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                         <GradientStop Color="#FD01FFEE" Offset="0"/>
-                        <GradientStop Color="Transparent" Offset="0.66"/>
+                        <GradientStop Color="Transparent" Offset="0.7"/>
                         <GradientStop Offset="1"/>
                     </LinearGradientBrush>
                 </Label.Foreground>
@@ -167,7 +167,7 @@
                 <Label.Foreground>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                         <GradientStop Color="#FDFFA401" Offset="0"/>
-                        <GradientStop Color="Transparent" Offset="0.8"/>
+                        <GradientStop Color="Transparent" Offset="0.7"/>
                         <GradientStop Offset="1"/>
                     </LinearGradientBrush>
                 </Label.Foreground>
@@ -176,7 +176,7 @@
                 <Label.Foreground>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                         <GradientStop Color="#FDFF0101" Offset="0"/>
-                        <GradientStop Color="Transparent" Offset="0.8"/>
+                        <GradientStop Color="Transparent" Offset="0.7"/>
                         <GradientStop Offset="1"/>
                     </LinearGradientBrush>
                 </Label.Foreground>
@@ -191,45 +191,44 @@
             <Label Content="1" HorizontalAlignment="Left" Margin="85,-14,0,0" VerticalAlignment="Top" Width="149" Height="368" IsEnabled="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="250" FontWeight="Bold" Background="#00000000">
                 <Label.Foreground>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="#FF00FFBF"/>
+                        <GradientStop Color="#FF00FFBF" Offset="0"/>
+                        <GradientStop Color="Transparent" Offset="0.7"/>
                         <GradientStop Offset="1"/>
-                        <GradientStop Color="White" Offset="1"/>
                     </LinearGradientBrush>
                 </Label.Foreground>
             </Label>
             <Label Content="2" HorizontalAlignment="Left" Margin="239,-14,0,0" VerticalAlignment="Top" Width="149" Height="368" IsEnabled="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="250" FontWeight="Bold" Background="#00000000">
                 <Label.Foreground>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="#FF08FF00"/>
+                        <GradientStop Color="#FF08FF00" Offset="0"/>
+                        <GradientStop Color="Transparent" Offset="0.7"/>
                         <GradientStop Offset="1"/>
-                        <GradientStop Color="White" Offset="1"/>
                     </LinearGradientBrush>
                 </Label.Foreground>
             </Label>
             <Label Content="3" HorizontalAlignment="Left" Margin="393,-14,0,0" VerticalAlignment="Top" Width="149" Height="368" IsEnabled="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="250" FontWeight="Bold" Background="#00000000">
                 <Label.Foreground>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="#FFFF9800"/>
+                        <GradientStop Color="#FFFF9800" Offset="0"/>
+                        <GradientStop Color="Transparent" Offset="0.7"/>
                         <GradientStop Offset="1"/>
-                        <GradientStop Color="White" Offset="1"/>
                     </LinearGradientBrush>
                 </Label.Foreground>
             </Label>
             <Label Content="4" HorizontalAlignment="Left" Margin="547,-17,0,0" VerticalAlignment="Top" Width="149" Height="367" IsEnabled="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="250" FontWeight="Bold" Background="#00000000">
                 <Label.Foreground>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="#FFFF9800"/>
-                        <GradientStop Offset="1"/>
-                        <GradientStop Color="White" Offset="1"/>
                         <GradientStop Color="#FDFF0101" Offset="0"/>
+                        <GradientStop Color="Transparent" Offset="0.7"/>
+                        <GradientStop Offset="1"/>
                     </LinearGradientBrush>
                 </Label.Foreground>
             </Label>
-            <Label Content="5" HorizontalAlignment="Left" Margin="85,137,0,0" VerticalAlignment="Top" Width="149" Height="367" IsEnabled="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="250" FontWeight="Bold" Background="#00000000">
+            <Label Content="5" HorizontalAlignment="Left" Margin="85,137,0,0" VerticalAlignment="Top" Width="149" Height="367" IsEnabled="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="250" FontWeight="Bold" Background="#00000000" BorderBrush="#FF4A0404" Visibility="Visible">
                 <Label.Foreground>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                         <GradientStop Color="#FD9401FF" Offset="0"/>
-                        <GradientStop Color="Transparent" Offset="0.887"/>
+                        <GradientStop Color="Transparent" Offset="0.7"/>
                         <GradientStop Offset="1"/>
                     </LinearGradientBrush>
                 </Label.Foreground>
@@ -238,7 +237,7 @@
                 <Label.Foreground>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                         <GradientStop Color="#FDB701FF" Offset="0"/>
-                        <GradientStop Color="Transparent" Offset="0.887"/>
+                        <GradientStop Color="Transparent" Offset="0.7"/>
                         <GradientStop Offset="1"/>
                     </LinearGradientBrush>
                 </Label.Foreground>
@@ -247,7 +246,7 @@
                 <Label.Foreground>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                         <GradientStop Color="#FD014BFF" Offset="0"/>
-                        <GradientStop Color="Transparent" Offset="0.887"/>
+                        <GradientStop Color="Transparent" Offset="0.7"/>
                         <GradientStop Offset="1"/>
                     </LinearGradientBrush>
                 </Label.Foreground>
@@ -256,7 +255,7 @@
                 <Label.Foreground>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                         <GradientStop Color="#FDFF016A" Offset="0"/>
-                        <GradientStop Color="Transparent" Offset="0.887"/>
+                        <GradientStop Color="Transparent" Offset="0.7"/>
                         <GradientStop Offset="1"/>
                     </LinearGradientBrush>
                 </Label.Foreground>
@@ -274,7 +273,7 @@
 
 
         </Grid>
-        <Grid x:Name="ExampleMenu" Visibility="Visible">
+        <Grid x:Name="ExampleMenu" Visibility="Hidden">
             <Button Style="{DynamicResource ButtonStyle1}" x:Name="Back_Exam_Button"  FontWeight="Bold"       Foreground="#FF404040" Content="Назад"     HorizontalAlignment="Left" Margin="10,10,0,0"       VerticalAlignment="Top" Height="50"  Width="150" Click="Back_Exam_Button_Click" FontSize="24"  />
             <Button Style="{DynamicResource ButtonStyle1}" x:Name="Check_Button"      FontWeight="Bold"       Foreground="#FF404040" Content="Готово"    HorizontalAlignment="Left" Margin="465,199,0,0"     VerticalAlignment="Top" Height="50" Width="215" Click="Check_Button_Click" FontSize="24"/>
             <Label Style="{DynamicResource LabelStyle1}" x:Name="First_Number"        FontWeight="Bold"       Foreground="#FF404040" Content="Label"     HorizontalAlignment="Left" Margin="120,144,0,0"     VerticalAlignment="Top" Height="50" Width="250" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24"/>
