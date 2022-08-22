@@ -19,12 +19,10 @@ using System.IO;
 
 namespace Generator_Testov_for_Brazzers
 {
-    
+
     public partial class MainWindow : Window
     {
-        private static String Path = "C:\\Users\\" + Environment.UserName + "\\AppData\\Local\\Balance.xdav";
-        private StreamWriter write_stream;
-        private StreamReader read_stream;
+        public static String Json_Path = @"C:\\Users\\" + Environment.UserName + "\\AppData\\Local\\Data_GTforB.json";
 
         private int Mode = 0;
         /*
@@ -42,12 +40,17 @@ namespace Generator_Testov_for_Brazzers
             . . .
             8 - Восьмой уровень сложности
         */
+
+        private double MAX_MONEY_ADD_MODE   = 4.5;
+        private double MAX_MONEY_SUB_MODE   = 11.5;
+        private double MAX_MONEY_MULT_MODE  = 19.5;
+        private double MAX_MONEY_DIV_MODE   = 27.5;
+
+        Data data = new Data();
+
         public MainWindow()
         {
             InitializeComponent();
-            FileStream fstream = new FileStream(Path, FileMode.OpenOrCreate);
-            fstream.Close();
-            //                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                (new StreamReader(Path).ReadLine() == "") new StreamWriter(Path).Write("0");
             MainMenu.Visibility = Visibility.Visible;
             DifficultMenu.Visibility = Visibility.Hidden;
             ExampleMenu.Visibility = Visibility.Hidden;
@@ -57,24 +60,22 @@ namespace Generator_Testov_for_Brazzers
             Read_File();
         }
 
+       
         /////////////    Чтение и запись баланса    //////////////
         private void Read_File()
         {
-            read_stream = new StreamReader(Path);
-            Balance.Content = "Баланс: " + read_stream.ReadLine();
-            read_stream.Close();
+            data = Json.ReadJson();
+            Balance.Content = "Баланс: " + data.Cur_Summ;
         }
 
-        private void Write_File(double pay)
+        private void Write_File()
         {
-            write_stream = new StreamWriter(Path);
-            String temp = Balance.Content.ToString();
-            temp = temp.Remove(0, 8);
-            if (temp == "") temp = "0";
-            double balance = double.Parse(temp) + pay;
-            write_stream.WriteLine(balance);
-            write_stream.Close();
+            
+            
+
+            Json.WriteJson(data);
         }
+
 
         /////////////    Задаёт пример для решения    //////////////
         private void Get_Random_Exaple()
@@ -135,6 +136,45 @@ namespace Generator_Testov_for_Brazzers
             SucssesMenu.Visibility = Visibility.Hidden;
             Answer_TextBox.Text = "";
             Answer_TextBox.Focus();
+            switch (Mode)
+            {
+                case 1:
+                    {
+                        if (data.Counter_Add[Dif - 1] >= data.Max_Counter_Add[Dif - 1])
+                        {
+                            Back_Exam_Button_Click(sender, e);
+                            SucssesMenu.Visibility = Visibility.Hidden;
+                        }
+                        break;
+                    }
+                case 2:
+                    {
+                        if (data.Counter_Sub[Dif - 1] >= data.Max_Counter_Sub[Dif - 1])
+                        {
+                            Back_Exam_Button_Click(sender, e);
+                            SucssesMenu.Visibility = Visibility.Hidden;
+                        }
+                        break;
+                    }
+                case 3:
+                    {
+                        if (data.Counter_Mult[Dif - 1] >= data.Max_Counter_Mult[Dif - 1])
+                        {
+                            Back_Exam_Button_Click(sender, e);
+                            SucssesMenu.Visibility = Visibility.Hidden;
+                        }
+                        break;
+                    }
+                case 4:
+                    {
+                        if (data.Counter_Div[Dif - 1] >= data.Max_Counter_Div[Dif - 1])
+                        {
+                            Back_Exam_Button_Click(sender, e);
+                            SucssesMenu.Visibility = Visibility.Hidden;
+                        }
+                        break;
+                    }
+            }
             return;
         }
 
@@ -145,6 +185,45 @@ namespace Generator_Testov_for_Brazzers
             ErrorMenu.Visibility = Visibility.Hidden;
             Answer_TextBox.Text = "";
             Answer_TextBox.Focus();
+            switch (Mode)
+            {
+                case 1:
+                    {
+                        if (data.Counter_Add[Dif - 1] >= data.Max_Counter_Add[Dif - 1])
+                        {
+                            Back_Exam_Button_Click(sender, e);
+                            ErrorMenu.Visibility = Visibility.Hidden;
+                        }
+                        break;
+                    }
+                case 2:
+                    {
+                        if (data.Counter_Sub[Dif - 1] >= data.Max_Counter_Sub[Dif - 1])
+                        {
+                            Back_Exam_Button_Click(sender, e);
+                            ErrorMenu.Visibility = Visibility.Hidden;
+                        }
+                        break;
+                    }
+                case 3:
+                    {
+                        if (data.Counter_Mult[Dif - 1] >= data.Max_Counter_Mult[Dif - 1])
+                        {
+                            Back_Exam_Button_Click(sender, e);
+                            ErrorMenu.Visibility = Visibility.Hidden;
+                        }
+                        break;
+                    }
+                case 4:
+                    {
+                        if (data.Counter_Div[Dif - 1] >= data.Max_Counter_Div[Dif - 1])
+                        {
+                            Back_Exam_Button_Click(sender, e);
+                            ErrorMenu.Visibility = Visibility.Hidden;
+                        }
+                        break;
+                    }
+            }
             return;
         }
 
@@ -157,7 +236,9 @@ namespace Generator_Testov_for_Brazzers
                 Answer_TextBox.Text.ToString() == "обналичить")
             {
                 Balance.Content = "Баланс: 0,0";
-                Write_File(0);
+                data.Cur_Summ = 0;
+                Write_File();
+                Read_File();
                 Answer_TextBox.Text = "Счёт обнулён";
                 return;
             }
@@ -195,14 +276,24 @@ namespace Generator_Testov_for_Brazzers
                         break;
                     }
             }
-            if(True_Answear == long.Parse(Answer_TextBox.Text.ToString()))
+            if (True_Answear == long.Parse(Answer_TextBox.Text.ToString()))
             {
-                double x = Get_Sum();
-                Write_File(x);
-                Read_File();
+                //double x = Get_Sum();
+                //data.Cur_Summ += x;
+                switch (Mode)
+                {
+                    case 1: { data.Counter_Add[Dif - 1]++;  data.Cur_Summ += data.Price_Add[Dif];   break; }
+                    case 2: { data.Counter_Sub[Dif - 1]++;  data.Cur_Summ += data.Price_Sub[Dif];   break; }
+                    case 3: { data.Counter_Mult[Dif - 1]++; data.Cur_Summ += data.Price_Mult[Dif];  break; }
+                    case 4: { data.Counter_Div[Dif - 1]++;  data.Cur_Summ += data.Price_Div[Dif];   break; }
+                }
                 SucssesMenu.Visibility = Visibility.Visible;
                 ExampleMenu.Visibility = Visibility.Hidden;
                 Next_Sucsses_Button.Focus();
+                isEnabled_Write();
+                Write_File();
+                Read_File();
+
             }
             else
             {
@@ -210,6 +301,16 @@ namespace Generator_Testov_for_Brazzers
                 ErrorMenu.Visibility = Visibility.Visible;
                 ExampleMenu.Visibility = Visibility.Hidden;
                 Next_Error_Button.Focus();
+                /*switch (Mode)
+                {
+                    case 1: data.Counter_Add[Dif - 1]--; break;
+                    case 2: data.Counter_Sub[Dif - 1]--; break;
+                    case 3:data.Counter_Mult[Dif - 1]--; break;
+                    case 4: data.Counter_Div[Dif - 1]--; break;
+                }*/
+                isEnabled_Write();
+                Write_File();
+                Read_File();
             }
         }
 
@@ -275,7 +376,7 @@ namespace Generator_Testov_for_Brazzers
             DifficultMenu.Visibility = Visibility.Visible;
         }
 
-        private double Get_Sum()
+        /*private double Get_Sum()
         {
             switch (Mode)
             {
@@ -286,9 +387,7 @@ namespace Generator_Testov_for_Brazzers
                 default: return 0;
             }
         }
-        /*@see
-         @param Orger_Dif Уровень сложности
-         */
+        
         private double Get_Sum(int Other_Dif)
         {
             switch (Mode)
@@ -300,6 +399,169 @@ namespace Generator_Testov_for_Brazzers
                 default: return 0;
             }
             
+        }*/
+                private double Get_Sum()
+        {
+            switch (Mode)
+            {
+                case 1: return Math.Round((double) ((MAX_MONEY_ADD_MODE / (Mode * 8)) * (Mode * Dif)), 4);
+                case 2: return Math.Round((double) ((MAX_MONEY_ADD_MODE / (Mode * 8)) * (Mode * Dif)), 4);
+                case 3: return Math.Round((double) ((MAX_MONEY_ADD_MODE / (Mode * 8)) * (Mode * Dif)), 4);
+                case 4: return Math.Round((double) ((MAX_MONEY_ADD_MODE / (Mode * 8)) * (Mode * Dif)), 4);
+                default: return Math.Round((double)((MAX_MONEY_ADD_MODE / (Mode * 8)) * (Mode * Dif)), 4);
+            }
+        }
+
+        private double Get_Sum(int Other_Dif)
+        {
+            switch (Mode)
+            {
+                case 1: return Math.Round((double) ((MAX_MONEY_ADD_MODE / (Mode * 8)) * (Mode * Other_Dif)), 4);
+                case 2: return Math.Round((double) ((MAX_MONEY_SUB_MODE / (Mode * 8)) * (Mode * Other_Dif)), 4);
+                case 3: return Math.Round((double)((MAX_MONEY_MULT_MODE / (Mode * 8)) * (Mode * Other_Dif)), 4);
+                case 4: return Math.Round((double) ((MAX_MONEY_DIV_MODE / (Mode * 8)) * (Mode * Other_Dif)), 4);
+                default: return Math.Round((double)((MAX_MONEY_ADD_MODE / (Mode * 8)) * (Mode * Other_Dif)), 4);
+            }
+        }
+
+        private void isEnabled_Read()
+        {
+            switch (Mode)
+            {
+                case 1:
+                    {
+                        Dif_1_Button.IsEnabled = data.Enabled_Add[0];
+                        Dif_2_Button.IsEnabled = data.Enabled_Add[1];
+                        Dif_3_Button.IsEnabled = data.Enabled_Add[2];
+                        Dif_4_Button.IsEnabled = data.Enabled_Add[3];
+                        Dif_5_Button.IsEnabled = data.Enabled_Add[4];
+                        Dif_6_Button.IsEnabled = data.Enabled_Add[5];
+                        Dif_7_Button.IsEnabled = data.Enabled_Add[6];
+                        Dif_8_Button.IsEnabled = data.Enabled_Add[7];
+                        break;
+                    }
+                case 2:
+                    {
+                        Dif_1_Button.IsEnabled = data.Enabled_Sub[0];
+                        Dif_2_Button.IsEnabled = data.Enabled_Sub[1];
+                        Dif_3_Button.IsEnabled = data.Enabled_Sub[2];
+                        Dif_4_Button.IsEnabled = data.Enabled_Sub[3];
+                        Dif_5_Button.IsEnabled = data.Enabled_Sub[4];
+                        Dif_6_Button.IsEnabled = data.Enabled_Sub[5];
+                        Dif_7_Button.IsEnabled = data.Enabled_Sub[6];
+                        Dif_8_Button.IsEnabled = data.Enabled_Sub[7];
+                        break;
+                    }
+                case 3:
+                    {
+                        Dif_1_Button.IsEnabled = data.Enabled_Mult[0];
+                        Dif_2_Button.IsEnabled = data.Enabled_Mult[1];
+                        Dif_3_Button.IsEnabled = data.Enabled_Mult[2];
+                        Dif_4_Button.IsEnabled = data.Enabled_Mult[3];
+                        Dif_5_Button.IsEnabled = data.Enabled_Mult[4];
+                        Dif_6_Button.IsEnabled = data.Enabled_Mult[5];
+                        Dif_7_Button.IsEnabled = data.Enabled_Mult[6];
+                        Dif_8_Button.IsEnabled = data.Enabled_Mult[7];
+                        break;
+                    }
+                case 4:
+                    {
+                        Dif_1_Button.IsEnabled = data.Enabled_Div[0];
+                        Dif_2_Button.IsEnabled = data.Enabled_Div[1];
+                        Dif_3_Button.IsEnabled = data.Enabled_Div[2];
+                        Dif_4_Button.IsEnabled = data.Enabled_Div[3];
+                        Dif_5_Button.IsEnabled = data.Enabled_Div[4];
+                        Dif_6_Button.IsEnabled = data.Enabled_Div[5];
+                        Dif_7_Button.IsEnabled = data.Enabled_Div[6];
+                        Dif_8_Button.IsEnabled = data.Enabled_Div[7];
+                        break;
+                    }
+            }
+        }
+
+        private void isEnabled_Write()
+        {
+            switch (Mode)
+            {
+                case 1:
+                    {
+                        data.Enabled_Add[0] = Dif_1_Button.IsEnabled;
+                        data.Enabled_Add[1] = Dif_2_Button.IsEnabled;
+                        data.Enabled_Add[2] = Dif_3_Button.IsEnabled;
+                        data.Enabled_Add[3] = Dif_4_Button.IsEnabled;
+                        data.Enabled_Add[4] = Dif_5_Button.IsEnabled;
+                        data.Enabled_Add[5] = Dif_6_Button.IsEnabled;
+                        data.Enabled_Add[6] = Dif_7_Button.IsEnabled;
+                        data.Enabled_Add[7] = Dif_8_Button.IsEnabled;
+                        break;
+                    }
+                case 2:
+                    {
+                        data.Enabled_Sub[0] = Dif_1_Button.IsEnabled;
+                        data.Enabled_Sub[1] = Dif_2_Button.IsEnabled;
+                        data.Enabled_Sub[2] = Dif_3_Button.IsEnabled;
+                        data.Enabled_Sub[3] = Dif_4_Button.IsEnabled;
+                        data.Enabled_Sub[4] = Dif_5_Button.IsEnabled;
+                        data.Enabled_Sub[5] = Dif_6_Button.IsEnabled;
+                        data.Enabled_Sub[6] = Dif_7_Button.IsEnabled;
+                        data.Enabled_Sub[7] = Dif_8_Button.IsEnabled;
+                        break;
+                    }
+                case 3:
+                    {
+                        data.Enabled_Mult[0] = Dif_1_Button.IsEnabled;
+                        data.Enabled_Mult[1] = Dif_2_Button.IsEnabled;
+                        data.Enabled_Mult[2] = Dif_3_Button.IsEnabled;
+                        data.Enabled_Mult[3] = Dif_4_Button.IsEnabled;
+                        data.Enabled_Mult[4] = Dif_5_Button.IsEnabled;
+                        data.Enabled_Mult[5] = Dif_6_Button.IsEnabled;
+                        data.Enabled_Mult[6] = Dif_7_Button.IsEnabled;
+                        data.Enabled_Mult[7] = Dif_8_Button.IsEnabled;
+                        break;
+                    }
+                case 4:
+                    {
+                        data.Enabled_Div[0] = Dif_1_Button.IsEnabled;
+                        data.Enabled_Div[1] = Dif_2_Button.IsEnabled;
+                        data.Enabled_Div[2] = Dif_3_Button.IsEnabled;
+                        data.Enabled_Div[3] = Dif_4_Button.IsEnabled;
+                        data.Enabled_Div[4] = Dif_5_Button.IsEnabled;
+                        data.Enabled_Div[5] = Dif_6_Button.IsEnabled;
+                        data.Enabled_Div[6] = Dif_7_Button.IsEnabled;
+                        data.Enabled_Div[7] = Dif_8_Button.IsEnabled;
+                        break;
+                    }
+            }
+            for(int i = 0; i < 8; i++)
+            {
+                switch (Mode)
+                {
+                    case 1:
+                        {
+                            if (data.Counter_Add[i] >= data.Max_Counter_Add[i])
+                                data.Enabled_Add[i] = false;
+                            break;
+                        } 
+                    case 2:
+                        {
+                            if (data.Counter_Sub[i] >= data.Max_Counter_Sub[i])
+                                data.Enabled_Sub[i] = false;
+                            break;
+                        }
+                    case 3:
+                        {
+                            if (data.Counter_Mult[i] >= data.Max_Counter_Mult[i])
+                                data.Enabled_Mult[i] = false;
+                            break;
+                        }
+                    case 4:
+                        {
+                            if (data.Counter_Div[i] >= data.Max_Counter_Div[i])
+                                data.Enabled_Div[i] = false;
+                            break;
+                        }
+                }
+            }
         }
 
         private void Add_Button_Click(object sender, RoutedEventArgs e)
@@ -308,14 +570,16 @@ namespace Generator_Testov_for_Brazzers
             Operator.Content = "+";
             Mode = 1;
 
-            Dif_1_Button.Content = "Первый\n"     + Get_Sum(1) + " Руб.";
-            Dif_2_Button.Content = "Второй\n"     + Get_Sum(2) + " Руб.";
-            Dif_3_Button.Content = "Третий\n"     + Get_Sum(3) + " Руб.";
-            Dif_4_Button.Content = "Четвертый\n"  + Get_Sum(4) + " Руб.";
-            Dif_5_Button.Content = "Пятый\n"      + Get_Sum(5) + " Руб.";
-            Dif_6_Button.Content = "Шестой\n"     + Get_Sum(6) + " Руб.";
-            Dif_7_Button.Content = "Седьмой\n"    + Get_Sum(7) + " Руб.";
-            Dif_8_Button.Content = "Восьмой\n"    + Get_Sum(8) + " Руб.";
+            Dif_1_Button.Content = "Первый\n"     + data.Price_Add[0] + " Руб.";
+            Dif_2_Button.Content = "Второй\n"     + data.Price_Add[1] + " Руб.";
+            Dif_3_Button.Content = "Третий\n"     + data.Price_Add[2] + " Руб.";
+            Dif_4_Button.Content = "Четвертый\n"  + data.Price_Add[3] + " Руб.";
+            Dif_5_Button.Content = "Пятый\n"      + data.Price_Add[4] + " Руб.";
+            Dif_6_Button.Content = "Шестой\n"     + data.Price_Add[5] + " Руб.";
+            Dif_7_Button.Content = "Седьмой\n"    + data.Price_Add[6] + " Руб.";
+            Dif_8_Button.Content = "Восьмой\n"    + data.Price_Add[7] + " Руб.";
+
+            isEnabled_Read();
         }
 
         private void Sub_Button_Click(object sender, RoutedEventArgs e)
@@ -324,14 +588,15 @@ namespace Generator_Testov_for_Brazzers
             Operator.Content = "-";
             Mode = 2;
 
-            Dif_1_Button.Content = "Первый\n"     + Get_Sum(1) + " Руб.";
-            Dif_2_Button.Content = "Второй\n"     + Get_Sum(2) + " Руб.";
-            Dif_3_Button.Content = "Третий\n"     + Get_Sum(3) + " Руб.";
-            Dif_4_Button.Content = "Четвертый\n"  + Get_Sum(4) + " Руб.";
-            Dif_5_Button.Content = "Пятый\n"      + Get_Sum(5) + " Руб.";
-            Dif_6_Button.Content = "Шестой\n"     + Get_Sum(6) + " Руб.";
-            Dif_7_Button.Content = "Седьмой\n"    + Get_Sum(7) + " Руб.";
-            Dif_8_Button.Content = "Восьмой\n"    + Get_Sum(8) + " Руб.";
+            Dif_1_Button.Content = "Первый\n"     + data.Price_Sub[0] + " Руб.";
+            Dif_2_Button.Content = "Второй\n"     + data.Price_Sub[1] + " Руб.";
+            Dif_3_Button.Content = "Третий\n"     + data.Price_Sub[2] + " Руб.";
+            Dif_4_Button.Content = "Четвертый\n"  + data.Price_Sub[3] + " Руб.";
+            Dif_5_Button.Content = "Пятый\n"      + data.Price_Sub[4] + " Руб.";
+            Dif_6_Button.Content = "Шестой\n"     + data.Price_Sub[5] + " Руб.";
+            Dif_7_Button.Content = "Седьмой\n"    + data.Price_Sub[6] + " Руб.";
+            Dif_8_Button.Content = "Восьмой\n"    + data.Price_Sub[7] + " Руб.";
+            isEnabled_Read();
         }
 
         private void Mult_Button_Click(object sender, RoutedEventArgs e)
@@ -340,14 +605,15 @@ namespace Generator_Testov_for_Brazzers
             Operator.Content = "*";
             Mode = 3;
 
-            Dif_1_Button.Content = "Первый\n"     + Get_Sum(1) + " Руб.";
-            Dif_2_Button.Content = "Второй\n"     + Get_Sum(2) + " Руб.";
-            Dif_3_Button.Content = "Третий\n"     + Get_Sum(3) + " Руб.";
-            Dif_4_Button.Content = "Четвертый\n"  + Get_Sum(4) + " Руб.";
-            Dif_5_Button.Content = "Пятый\n"      + Get_Sum(5) + " Руб.";
-            Dif_6_Button.Content = "Шестой\n"     + Get_Sum(6) + " Руб.";
-            Dif_7_Button.Content = "Седьмой\n"    + Get_Sum(7) + " Руб.";
-            Dif_8_Button.Content = "Восьмой\n"    + Get_Sum(8) + " Руб.";
+            Dif_1_Button.Content = "Первый\n"     + data.Price_Mult[0] + " Руб.";
+            Dif_2_Button.Content = "Второй\n"     + data.Price_Mult[1] + " Руб.";
+            Dif_3_Button.Content = "Третий\n"     + data.Price_Mult[2] + " Руб.";
+            Dif_4_Button.Content = "Четвертый\n"  + data.Price_Mult[3] + " Руб.";
+            Dif_5_Button.Content = "Пятый\n"      + data.Price_Mult[4] + " Руб.";
+            Dif_6_Button.Content = "Шестой\n"     + data.Price_Mult[5] + " Руб.";
+            Dif_7_Button.Content = "Седьмой\n"    + data.Price_Mult[6] + " Руб.";
+            Dif_8_Button.Content = "Восьмой\n"    + data.Price_Mult[7] + " Руб.";
+            isEnabled_Read();
         }
 
         private void Div_Button_Click(object sender, RoutedEventArgs e)
@@ -356,14 +622,15 @@ namespace Generator_Testov_for_Brazzers
             Operator.Content = "/";
             Mode = 4;
 
-            Dif_1_Button.Content = "Первый\n"     + Get_Sum(1) + " Руб.";
-            Dif_2_Button.Content = "Второй\n"     + Get_Sum(2) + " Руб.";
-            Dif_3_Button.Content = "Третий\n"     + Get_Sum(3) + " Руб.";
-            Dif_4_Button.Content = "Четвертый\n"  + Get_Sum(4) + " Руб.";
-            Dif_5_Button.Content = "Пятый\n"      + Get_Sum(5) + " Руб.";
-            Dif_6_Button.Content = "Шестой\n"     + Get_Sum(6) + " Руб.";
-            Dif_7_Button.Content = "Седьмой\n"    + Get_Sum(7) + " Руб.";
-            Dif_8_Button.Content = "Восьмой\n"    + Get_Sum(8) + " Руб.";
+            Dif_1_Button.Content = "Первый\n"     + data.Price_Div[0] + " Руб.";
+            Dif_2_Button.Content = "Второй\n"     + data.Price_Div[1] + " Руб.";
+            Dif_3_Button.Content = "Третий\n"     + data.Price_Div[2] + " Руб.";
+            Dif_4_Button.Content = "Четвертый\n"  + data.Price_Div[3] + " Руб.";
+            Dif_5_Button.Content = "Пятый\n"      + data.Price_Div[4] + " Руб.";
+            Dif_6_Button.Content = "Шестой\n"     + data.Price_Div[5] + " Руб.";
+            Dif_7_Button.Content = "Седьмой\n"    + data.Price_Div[6] + " Руб.";
+            Dif_8_Button.Content = "Восьмой\n"    + data.Price_Div[7] + " Руб.";
+            isEnabled_Read();
         }
 
         private void Exit_Button_Click(object sender, RoutedEventArgs e)
@@ -381,6 +648,7 @@ namespace Generator_Testov_for_Brazzers
         {
             DifficultMenu.Visibility = Visibility.Visible;
             ExampleMenu.Visibility = Visibility.Hidden;
+            isEnabled_Read();
         }
 
         private void Answer_TextBox_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
