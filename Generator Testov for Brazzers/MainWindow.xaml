@@ -140,7 +140,7 @@
         </Style>
     </Window.Resources>
     <Grid x:Name="MainGrid">
-        <Image Source="/Fon_1.jpg" Margin="0,-1,0,-1" VerticalAlignment="Center" HorizontalAlignment="Center" Stretch="Fill" />
+        <Image Source="/Fon_2.jpg" Margin="0,-1,0,-1" VerticalAlignment="Center" HorizontalAlignment="Center" Stretch="Fill" />
         <Grid x:Name="BalanceMenu" Visibility="Visible" Margin="242,0,0,304">
             <Label Style="{DynamicResource LabelStyle1}" Content="Баланс: " x:Name="Balance" HorizontalAlignment="Left"  FontWeight="Bold"       Foreground="#FF404040" Margin="183,10,0,0" VerticalAlignment="Top" Height="50" Width="348" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24" Background="#8CFFEBC6"/>
         </Grid>
